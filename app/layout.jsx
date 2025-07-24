@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "CBC School Management",
-  description: "A comprehensive school management system for CBC curriculum",
+  title: "Edubora School Management",
+  description: "A comprehensive school management system for kenyan curriculum",
 }
 
 export default function RootLayout({ children }) {
