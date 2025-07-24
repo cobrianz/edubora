@@ -256,7 +256,7 @@ const SchoolSystemSetupForm = () => {
             full_name: formData.fullName,
             email: formData.adminEmail,
             password_hash: "hashed_password",
-            role_id: parseInt(formData.roleId),
+            role_id: Number.parseInt(formData.roleId),
             is_active: true,
             phone_number: formData.phoneNumber,
             created_at: new Date().toISOString(),
@@ -318,8 +318,8 @@ const SchoolSystemSetupForm = () => {
       case 1:
         return (
           <CardContent className="grid gap-6 p-8">
-            <div className="grid gap-2">
-              <h3 className="text-2xl font-semibold text-slate-600 dark:text-slate-400">
+            <div className="grid gap-2 col-span-full">
+              <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
                 Administrator Details
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -327,370 +327,377 @@ const SchoolSystemSetupForm = () => {
                 school system.
               </p>
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="fullName" className="text-foreground">
-                  Full Name
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Enter the full name of the primary administrator.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="fullName"
-                type="text"
-                placeholder="Enter full name (e.g., John Doe)"
-                value={formData.fullName}
-                onChange={handleChange}
-                className={
-                  errors.fullName
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.fullName}
-                aria-describedby="fullName-error"
-              />
-              {errors.fullName && (
-                <p id="fullName-error" className="text-sm text-destructive">
-                  {errors.fullName}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="adminEmail" className="text-foreground">
-                  Email
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      This email will be used for login and notifications.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="adminEmail"
-                type="email"
-                placeholder="admin@school.com"
-                value={formData.adminEmail}
-                onChange={handleChange}
-                className={
-                  errors.adminEmail
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.adminEmail}
-                aria-describedby="adminEmail-error"
-              />
-              {errors.adminEmail && (
-                <p id="adminEmail-error" className="text-sm text-destructive">
-                  {errors.adminEmail}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="phoneNumber" className="text-foreground">
-                  Phone Number
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Provide a contact number for the administrator.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="phoneNumber"
-                type="tel"
-                placeholder="+1234567890"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className={
-                  errors.phoneNumber
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.phoneNumber}
-                aria-describedby="phoneNumber-error"
-              />
-              {errors.phoneNumber && (
-                <p id="phoneNumber-error" className="text-sm text-destructive">
-                  {errors.phoneNumber}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="password" className="text-foreground">
-                  Password
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Password must be strong and secure.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter a strong password"
-                value={formData.password}
-                onChange={handleChange}
-                className={
-                  errors.password
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.password}
-                aria-describedby="password-error"
-              />
-              {errors.password && (
-                <p id="password-error" className="text-sm text-destructive">
-                  {errors.password}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="confirmPassword" className="text-foreground">
-                  Confirm Password
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Re-enter the password to confirm.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className={
-                  errors.confirmPassword
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.confirmPassword}
-                aria-describedby="confirmPassword-error"
-              />
-              {errors.confirmPassword && (
-                <p
-                  id="confirmPassword-error"
-                  className="text-sm text-destructive"
-                >
-                  {errors.confirmPassword}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="roleId" className="text-foreground">
-                  Role
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Select the role for this user (default is Admin).
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Select
-                value={formData.roleId}
-                onValueChange={(val) => handleSelectChange(val, "roleId")}
-              >
-                <SelectTrigger
-                  id="roleId"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-full">
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="fullName" className="text-foreground">
+                    Full Name
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Enter the full name of the primary administrator.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="fullName"
+                  type="text"
+                  placeholder="Enter full name (e.g., John Doe)"
+                  value={formData.fullName}
+                  onChange={handleChange}
                   className={
-                    errors.roleId
-                      ? "border-destructive"
+                    errors.fullName
+                      ? "border-destructive focus:ring-destructive"
                       : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
                   }
-                  aria-describedby="roleId-error"
+                  aria-invalid={!!errors.fullName}
+                  aria-describedby="fullName-error"
+                />
+                {errors.fullName && (
+                  <p id="fullName-error" className="text-sm text-destructive">
+                    {errors.fullName}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="adminEmail" className="text-foreground">
+                    Email
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        This email will be used for login and notifications.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="adminEmail"
+                  type="email"
+                  placeholder="admin@school.com"
+                  value={formData.adminEmail}
+                  onChange={handleChange}
+                  className={
+                    errors.adminEmail
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.adminEmail}
+                  aria-describedby="adminEmail-error"
+                />
+                {errors.adminEmail && (
+                  <p id="adminEmail-error" className="text-sm text-destructive">
+                    {errors.adminEmail}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="phoneNumber" className="text-foreground">
+                    Phone Number
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Provide a contact number for the administrator.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  placeholder="+1234567890"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  className={
+                    errors.phoneNumber
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.phoneNumber}
+                  aria-describedby="phoneNumber-error"
+                />
+                {errors.phoneNumber && (
+                  <p
+                    id="phoneNumber-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.phoneNumber}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="password" className="text-foreground">
+                    Password
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Password must be strong and secure.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter a strong password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={
+                    errors.password
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.password}
+                  aria-describedby="password-error"
+                />
+                {errors.password && (
+                  <p id="password-error" className="text-sm text-destructive">
+                    {errors.password}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="confirmPassword" className="text-foreground">
+                    Confirm Password
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Re-enter the password to confirm.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className={
+                    errors.confirmPassword
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.confirmPassword}
+                  aria-describedby="confirmPassword-error"
+                />
+                {errors.confirmPassword && (
+                  <p
+                    id="confirmPassword-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.confirmPassword}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="roleId" className="text-foreground">
+                    Role
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Select the role for this user (default is Admin).
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Select
+                  value={formData.roleId}
+                  onValueChange={(val) => handleSelectChange(val, "roleId")}
                 >
-                  <SelectValue placeholder="Select role" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">Administrator</SelectItem>
-                </SelectContent>
-              </Select>
-              {errors.roleId && (
-                <p id="roleId-error" className="text-sm text-destructive">
-                  {errors.roleId}
-                </p>
-              )}
+                  <SelectTrigger
+                    id="roleId"
+                    className={
+                      errors.roleId
+                        ? "border-destructive"
+                        : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                    }
+                    aria-describedby="roleId-error"
+                  >
+                    <SelectValue placeholder="Select role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">Administrator</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.roleId && (
+                  <p id="roleId-error" className="text-sm text-destructive">
+                    {errors.roleId}
+                  </p>
+                )}
+              </div>
             </div>
           </CardContent>
         );
       case 2:
         return (
           <CardContent className="grid gap-6 p-8">
-            <div className="grid gap-2">
-              <h3 className="text-2xl font-semibold text-slate-600 dark:text-slate-400">
+            <div className="grid gap-2 col-span-full">
+              <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
                 School Details
               </h3>
               <p className="text-sm text-muted-foreground">
                 Provide detailed information about your school for the system.
               </p>
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolName" className="text-foreground">
-                  School Name
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Enter the official name of your school.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="schoolName"
-                type="text"
-                placeholder="Enter school name (e.g., Global Academy)"
-                value={formData.schoolName}
-                onChange={handleChange}
-                className={
-                  errors.schoolName
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolName}
-                aria-describedby="schoolName-error"
-              />
-              {errors.schoolName && (
-                <p id="schoolName-error" className="text-sm text-destructive">
-                  {errors.schoolName}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolType" className="text-foreground">
-                  School Type
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Select the type of educational institution.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Select
-                value={formData.schoolType}
-                onValueChange={(val) => handleSelectChange(val, "schoolType")}
-              >
-                <SelectTrigger
-                  id="schoolType"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-full">
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolName" className="text-foreground">
+                    School Name
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Enter the official name of your school.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolName"
+                  type="text"
+                  placeholder="Enter school name (e.g., Global Academy)"
+                  value={formData.schoolName}
+                  onChange={handleChange}
                   className={
-                    errors.schoolType
-                      ? "border-destructive"
+                    errors.schoolName
+                      ? "border-destructive focus:ring-destructive"
                       : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
                   }
-                  aria-describedby="schoolType-error"
-                >
-                  <SelectValue placeholder="Select school type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="K-12">K-12 School</SelectItem>
-                  <SelectItem value="Primary">Primary School</SelectItem>
-                  <SelectItem value="Secondary">Secondary School</SelectItem>
-                  <SelectItem value="Higher Education">
-                    Higher Education
-                  </SelectItem>
-                  <SelectItem value="Vocational">Vocational School</SelectItem>
-                  <SelectItem value="Special Education">
-                    Special Education
-                  </SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {errors.schoolType && (
-                <p id="schoolType-error" className="text-sm text-destructive">
-                  {errors.schoolType}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolAddress" className="text-foreground">
-                  Address
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Enter the physical address of the school.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                  aria-invalid={!!errors.schoolName}
+                  aria-describedby="schoolName-error"
+                />
+                {errors.schoolName && (
+                  <p id="schoolName-error" className="text-sm text-destructive">
+                    {errors.schoolName}
+                  </p>
+                )}
               </div>
-              <Input
-                id="schoolAddress"
-                type="text"
-                placeholder="Enter address (e.g., 123 Education Lane)"
-                value={formData.schoolAddress}
-                onChange={handleChange}
-                className={
-                  errors.schoolAddress
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolAddress}
-                aria-describedby="schoolAddress-error"
-              />
-              {errors.schoolAddress && (
-                <p
-                  id="schoolAddress-error"
-                  className="text-sm text-destructive"
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolType" className="text-foreground">
+                    School Type
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Select the type of educational institution.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Select
+                  value={formData.schoolType}
+                  onValueChange={(val) => handleSelectChange(val, "schoolType")}
                 >
-                  {errors.schoolAddress}
-                </p>
-              )}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <SelectTrigger
+                    id="schoolType"
+                    className={
+                      errors.schoolType
+                        ? "border-destructive"
+                        : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                    }
+                    aria-describedby="schoolType-error"
+                  >
+                    <SelectValue placeholder="Select school type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="K-12">K-12 School</SelectItem>
+                    <SelectItem value="Primary">Primary School</SelectItem>
+                    <SelectItem value="Secondary">Secondary School</SelectItem>
+                    <SelectItem value="Higher Education">
+                      Higher Education
+                    </SelectItem>
+                    <SelectItem value="Vocational">
+                      Vocational School
+                    </SelectItem>
+                    <SelectItem value="Special Education">
+                      Special Education
+                    </SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.schoolType && (
+                  <p id="schoolType-error" className="text-sm text-destructive">
+                    {errors.schoolType}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2 col-span-full">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolAddress" className="text-foreground">
+                    Address
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Enter the physical address of the school.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolAddress"
+                  type="text"
+                  placeholder="Enter address (e.g., 123 Education Lane)"
+                  value={formData.schoolAddress}
+                  onChange={handleChange}
+                  className={
+                    errors.schoolAddress
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.schoolAddress}
+                  aria-describedby="schoolAddress-error"
+                />
+                {errors.schoolAddress && (
+                  <p
+                    id="schoolAddress-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.schoolAddress}
+                  </p>
+                )}
+              </div>
               <div className="grid gap-2">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="schoolCity" className="text-foreground">
@@ -699,7 +706,7 @@ const SchoolSystemSetupForm = () => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
-                        <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                       </TooltipTrigger>
                       <TooltipContent>
                         Enter the city where the school is located.
@@ -735,7 +742,7 @@ const SchoolSystemSetupForm = () => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
-                        <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                       </TooltipTrigger>
                       <TooltipContent>
                         Enter the state or province.
@@ -766,8 +773,6 @@ const SchoolSystemSetupForm = () => {
                   </p>
                 )}
               </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="schoolPostalCode" className="text-foreground">
@@ -776,7 +781,7 @@ const SchoolSystemSetupForm = () => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
-                        <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                       </TooltipTrigger>
                       <TooltipContent>
                         Enter the postal or ZIP code.
@@ -815,7 +820,7 @@ const SchoolSystemSetupForm = () => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
-                        <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                       </TooltipTrigger>
                       <TooltipContent>
                         Enter the country of the school.
@@ -846,374 +851,388 @@ const SchoolSystemSetupForm = () => {
                   </p>
                 )}
               </div>
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolPhone" className="text-foreground">
-                  School Phone Number
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Main contact number for the school.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolPhone" className="text-foreground">
+                    School Phone Number
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Main contact number for the school.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolPhone"
+                  type="tel"
+                  placeholder="+1234567890"
+                  value={formData.schoolPhone}
+                  onChange={handleChange}
+                  className={
+                    errors.schoolPhone
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.schoolPhone}
+                  aria-describedby="schoolPhone-error"
+                />
+                {errors.schoolPhone && (
+                  <p
+                    id="schoolPhone-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.schoolPhone}
+                  </p>
+                )}
               </div>
-              <Input
-                id="schoolPhone"
-                type="tel"
-                placeholder="+1234567890"
-                value={formData.schoolPhone}
-                onChange={handleChange}
-                className={
-                  errors.schoolPhone
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolPhone}
-                aria-describedby="schoolPhone-error"
-              />
-              {errors.schoolPhone && (
-                <p id="schoolPhone-error" className="text-sm text-destructive">
-                  {errors.schoolPhone}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolEmail" className="text-foreground">
-                  School Email
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Official email address for school communications.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolEmail" className="text-foreground">
+                    School Email
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Official email address for school communications.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolEmail"
+                  type="email"
+                  placeholder="info@school.com"
+                  value={formData.schoolEmail}
+                  onChange={handleChange}
+                  className={
+                    errors.schoolEmail
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.schoolEmail}
+                  aria-describedby="schoolEmail-error"
+                />
+                {errors.schoolEmail && (
+                  <p
+                    id="schoolEmail-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.schoolEmail}
+                  </p>
+                )}
               </div>
-              <Input
-                id="schoolEmail"
-                type="email"
-                placeholder="info@school.com"
-                value={formData.schoolEmail}
-                onChange={handleChange}
-                className={
-                  errors.schoolEmail
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolEmail}
-                aria-describedby="schoolEmail-error"
-              />
-              {errors.schoolEmail && (
-                <p id="schoolEmail-error" className="text-sm text-destructive">
-                  {errors.schoolEmail}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolWebsite" className="text-foreground">
-                  School Website (Optional)
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Enter the school’s website URL, if available.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolWebsite" className="text-foreground">
+                    School Website (Optional)
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Enter the school’s website URL, if available.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolWebsite"
+                  type="url"
+                  placeholder="https://www.school.com"
+                  value={formData.schoolWebsite}
+                  onChange={handleChange}
+                  className={
+                    errors.schoolWebsite
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.schoolWebsite}
+                  aria-describedby="schoolWebsite-error"
+                />
+                {errors.schoolWebsite && (
+                  <p
+                    id="schoolWebsite-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.schoolWebsite}
+                  </p>
+                )}
               </div>
-              <Input
-                id="schoolWebsite"
-                type="url"
-                placeholder="https://www.school.com"
-                value={formData.schoolWebsite}
-                onChange={handleChange}
-                className={
-                  errors.schoolWebsite
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolWebsite}
-                aria-describedby="schoolWebsite-error"
-              />
-              {errors.schoolWebsite && (
-                <p
-                  id="schoolWebsite-error"
-                  className="text-sm text-destructive"
-                >
-                  {errors.schoolWebsite}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="schoolSlug" className="text-foreground">
-                  School Slug
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Unique identifier for your school in URLs (auto-generated
-                      from school name).
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="schoolSlug" className="text-foreground">
+                    School Slug
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Unique identifier for your school in URLs
+                        (auto-generated from school name).
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="schoolSlug"
+                  type="text"
+                  placeholder="school-slug"
+                  value={formData.schoolSlug}
+                  onChange={handleChange}
+                  className={
+                    errors.schoolSlug
+                      ? "border-destructive focus:ring-destructive"
+                      : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                  }
+                  aria-invalid={!!errors.schoolSlug}
+                  aria-describedby="schoolSlug-error"
+                />
+                {errors.schoolSlug && (
+                  <p id="schoolSlug-error" className="text-sm text-destructive">
+                    {errors.schoolSlug}
+                  </p>
+                )}
               </div>
-              <Input
-                id="schoolSlug"
-                type="text"
-                placeholder="school-slug"
-                value={formData.schoolSlug}
-                onChange={handleChange}
-                className={
-                  errors.schoolSlug
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.schoolSlug}
-                aria-describedby="schoolSlug-error"
-              />
-              {errors.schoolSlug && (
-                <p id="schoolSlug-error" className="text-sm text-destructive">
-                  {errors.schoolSlug}
-                </p>
-              )}
             </div>
           </CardContent>
         );
       case 3:
         return (
           <CardContent className="grid gap-6 p-8">
-            <div className="grid gap-2">
-              <h3 className="text-2xl font-semibold text-slate-600 dark:text-slate-400">
+            <div className="grid gap-2 col-span-full">
+              <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
                 Advanced School Settings
               </h3>
               <p className="text-sm text-muted-foreground">
                 Configure additional settings for your school in the system.
               </p>
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="contactPersonName" className="text-foreground">
-                  Contact Person Name
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Name of the primary contact person for the school.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="contactPersonName"
-                type="text"
-                placeholder="Enter contact person name (e.g., John Smith)"
-                value={formData.contactPersonName}
-                onChange={handleChange}
-                className={
-                  errors.contactPersonName
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.contactPersonName}
-                aria-describedby="contactPersonName-error"
-              />
-              {errors.contactPersonName && (
-                <p
-                  id="contactPersonName-error"
-                  className="text-sm text-destructive"
-                >
-                  {errors.contactPersonName}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="contactPersonEmail" className="text-foreground">
-                  Contact Person Email
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Email address of the primary contact person.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="contactPersonEmail"
-                type="email"
-                placeholder="contact@school.com"
-                value={formData.contactPersonEmail}
-                onChange={handleChange}
-                className={
-                  errors.contactPersonEmail
-                    ? "border-destructive focus:ring-destructive"
-                    : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
-                }
-                aria-invalid={!!errors.contactPersonEmail}
-                aria-describedby="contactPersonEmail-error"
-              />
-              {errors.contactPersonEmail && (
-                <p
-                  id="contactPersonEmail-error"
-                  className="text-sm text-destructive"
-                >
-                  {errors.contactPersonEmail}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label
-                  htmlFor="academicYearStartMonth"
-                  className="text-foreground"
-                >
-                  Academic Year Start Month
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Month when the academic year typically begins.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Select
-                value={formData.academicYearStartMonth}
-                onValueChange={(val) =>
-                  handleSelectChange(val, "academicYearStartMonth")
-                }
-              >
-                <SelectTrigger
-                  id="academicYearStartMonth"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-full">
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="contactPersonName"
+                    className="text-foreground"
+                  >
+                    Contact Person Name
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Name of the primary contact person for the school.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="contactPersonName"
+                  type="text"
+                  placeholder="Enter contact person name (e.g., John Smith)"
+                  value={formData.contactPersonName}
+                  onChange={handleChange}
                   className={
-                    errors.academicYearStartMonth
-                      ? "border-destructive"
+                    errors.contactPersonName
+                      ? "border-destructive focus:ring-destructive"
                       : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
                   }
-                  aria-describedby="academicYearStartMonth-error"
-                >
-                  <SelectValue placeholder="Select start month" />
-                </SelectTrigger>
-                <SelectContent>
-                  {[
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December",
-                  ].map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.academicYearStartMonth && (
-                <p
-                  id="academicYearStartMonth-error"
-                  className="text-sm text-destructive"
-                >
-                  {errors.academicYearStartMonth}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="timezone" className="text-foreground">
-                  Timezone
-                </Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Select the timezone for your school’s operations.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                  aria-invalid={!!errors.contactPersonName}
+                  aria-describedby="contactPersonName-error"
+                />
+                {errors.contactPersonName && (
+                  <p
+                    id="contactPersonName-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.contactPersonName}
+                  </p>
+                )}
               </div>
-              <Select
-                value={formData.timezone}
-                onValueChange={(val) => handleSelectChange(val, "timezone")}
-              >
-                <SelectTrigger
-                  id="timezone"
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="contactPersonEmail"
+                    className="text-foreground"
+                  >
+                    Contact Person Email
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Email address of the primary contact person.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Input
+                  id="contactPersonEmail"
+                  type="email"
+                  placeholder="contact@school.com"
+                  value={formData.contactPersonEmail}
+                  onChange={handleChange}
                   className={
-                    errors.timezone
-                      ? "border-destructive"
+                    errors.contactPersonEmail
+                      ? "border-destructive focus:ring-destructive"
                       : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
                   }
-                  aria-describedby="timezone-error"
+                  aria-invalid={!!errors.contactPersonEmail}
+                  aria-describedby="contactPersonEmail-error"
+                />
+                {errors.contactPersonEmail && (
+                  <p
+                    id="contactPersonEmail-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.contactPersonEmail}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="academicYearStartMonth"
+                    className="text-foreground"
+                  >
+                    Academic Year Start Month
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Month when the academic year typically begins.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Select
+                  value={formData.academicYearStartMonth}
+                  onValueChange={(val) =>
+                    handleSelectChange(val, "academicYearStartMonth")
+                  }
                 >
-                  <SelectValue placeholder="Select timezone" />
-                </SelectTrigger>
-                <SelectContent>
-                  {[
-                    "America/New_York",
-                    "America/Chicago",
-                    "America/Denver",
-                    "America/Los_Angeles",
-                    "Europe/London",
-                    "Europe/Paris",
-                    "Asia/Tokyo",
-                    "Australia/Sydney",
-                    "Africa/Nairobi",
-                  ].map((tz) => (
-                    <SelectItem key={tz} value={tz}>
-                      {tz}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.timezone && (
-                <p id="timezone-error" className="text-sm text-destructive">
-                  {errors.timezone}
-                </p>
-              )}
+                  <SelectTrigger
+                    id="academicYearStartMonth"
+                    className={
+                      errors.academicYearStartMonth
+                        ? "border-destructive"
+                        : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                    }
+                    aria-describedby="academicYearStartMonth-error"
+                  >
+                    <SelectValue placeholder="Select start month" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[
+                      "January",
+                      "February",
+                      "March",
+                      "April",
+                      "May",
+                      "June",
+                      "July",
+                      "August",
+                      "September",
+                      "October",
+                      "November",
+                      "December",
+                    ].map((month) => (
+                      <SelectItem key={month} value={month}>
+                        {month}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.academicYearStartMonth && (
+                  <p
+                    id="academicYearStartMonth-error"
+                    className="text-sm text-destructive"
+                  >
+                    {errors.academicYearStartMonth}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="timezone" className="text-foreground">
+                    Timezone
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Select the timezone for your school’s operations.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <Select
+                  value={formData.timezone}
+                  onValueChange={(val) => handleSelectChange(val, "timezone")}
+                >
+                  <SelectTrigger
+                    id="timezone"
+                    className={
+                      errors.timezone
+                        ? "border-destructive"
+                        : "border-input focus:ring-slate-600 dark:focus:ring-slate-400"
+                    }
+                    aria-describedby="timezone-error"
+                  >
+                    <SelectValue placeholder="Select timezone" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[
+                      "America/New_York",
+                      "America/Chicago",
+                      "America/Denver",
+                      "America/Los_Angeles",
+                      "Europe/London",
+                      "Europe/Paris",
+                      "Asia/Tokyo",
+                      "Australia/Sydney",
+                      "Africa/Nairobi",
+                    ].map((tz) => (
+                      <SelectItem key={tz} value={tz}>
+                        {tz}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.timezone && (
+                  <p id="timezone-error" className="text-sm text-destructive">
+                    {errors.timezone}
+                  </p>
+                )}
+              </div>
             </div>
           </CardContent>
         );
       case 4:
         return (
           <CardContent className="grid gap-6 p-8">
-            <div className="grid gap-2">
-              <h3 className="text-2xl font-semibold text-slate-600 dark:text-slate-400">
+            <div className="grid gap-2 col-span-full">
+              <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
                 Review & Confirm
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -1221,8 +1240,8 @@ const SchoolSystemSetupForm = () => {
                 setup.
               </p>
             </div>
-            <div className="grid gap-6">
-              <div className="grid gap-3 p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
+            <div className="grid gap-6 col-span-full">
+              <div className="grid gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
                 <Label className="font-semibold text-lg text-foreground">
                   Administrator Information
                 </Label>
@@ -1244,7 +1263,7 @@ const SchoolSystemSetupForm = () => {
                   </p>
                 </div>
               </div>
-              <div className="grid gap-3 p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
+              <div className="grid gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
                 <Label className="font-semibold text-lg text-foreground">
                   School Information
                 </Label>
@@ -1277,13 +1296,13 @@ const SchoolSystemSetupForm = () => {
                   </p>
                   <p className="text-foreground">
                     <span className="font-medium">School Slug:</span>{" "}
-                    <span className="font-mono bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">
+                    <span className="font-mono bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded">
                       {formData.schoolSlug}
                     </span>
                   </p>
                 </div>
               </div>
-              <div className="grid gap-3 p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
+              <div className="grid gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
                 <Label className="font-semibold text-lg text-foreground">
                   Advanced Settings
                 </Label>
@@ -1307,7 +1326,7 @@ const SchoolSystemSetupForm = () => {
                 </div>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-muted-foreground mt-4 col-span-full">
               By submitting, you agree to create a new school environment in the
               School Management System. This will initialize your school’s
               database and administrator account.
@@ -1320,13 +1339,19 @@ const SchoolSystemSetupForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-3xl shadow-2xl rounded-3xl overflow-hidden border-border">
-        <CardHeader className="bg-primary text-primary-foreground dark:bg-primary dark:text-primary-foreground p-8">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center relative"
+      style={{
+        backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-700/70 to-slate-800/70 backdrop-blur-sm"></div>
+      <Card className="w-full max-w-3xl shadow-2xl rounded-3xl overflow-hidden border-none relative z-10 bg-white/90 dark:bg-gray-950/90">
+        <CardHeader className="bg-gradient-to-r from-slate-600 to-slate-700 text-white p-8">
           <CardTitle className="text-4xl font-bold">
             School System Setup
           </CardTitle>
-          <CardDescription className="text-secondary-foreground text-lg">
+          <CardDescription className="text-slate-100 text-lg">
             Step {currentStep} of {totalSteps}:{" "}
             {currentStep === 1 && "Administrator Details"}
             {currentStep === 2 && "School Details"}
@@ -1335,18 +1360,18 @@ const SchoolSystemSetupForm = () => {
           </CardDescription>
           <Progress
             value={(currentStep / totalSteps) * 100}
-            className="mt-4 bg-secondary"
-            indicatorClassName="bg-slate-600 dark:bg-slate-400"
+            className="mt-4 bg-slate-200/50"
+            indicatorClassName="bg-white"
           />
         </CardHeader>
         <form onSubmit={handleSubmit}>
           {renderStep()}
-          <CardFooter className="flex justify-between items-center p-8 bg-muted/10">
+          <CardFooter className="flex justify-between items-center p-8 bg-gray-50/80 dark:bg-gray-900/80 border-t border-gray-200 dark:border-gray-800">
             <Button
               type="button"
               variant="outline"
               onClick={fillDemoData}
-              className="border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-white dark:border-slate-400 dark:text-slate-400 dark:hover:bg-slate-400 dark:hover:text-slate-900 transition-colors font-semibold"
+              className="border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-white dark:border-slate-400 dark:text-slate-400 dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-colors font-semibold bg-transparent"
               disabled={isSubmitting}
             >
               Fill Demo Data
@@ -1357,7 +1382,7 @@ const SchoolSystemSetupForm = () => {
                   type="button"
                   variant="outline"
                   onClick={handleBack}
-                  className="border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white dark:border-slate-200 dark:text-slate-200 dark:hover:bg-slate-200 dark:hover:text-slate-900 transition-colors font-semibold"
+                  className="border-gray-700 text-gray-700 hover:bg-gray-700 hover:text-white dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900 transition-colors font-semibold bg-transparent"
                   disabled={isSubmitting}
                 >
                   Back
@@ -1367,7 +1392,7 @@ const SchoolSystemSetupForm = () => {
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="bg-slate-600 hover:bg-slate-800 text-white dark:bg-slate-400 dark:hover:bg-slate-200 dark:text-slate-900 transition-colors font-semibold"
+                  className="bg-slate-600 hover:bg-slate-700 text-white dark:bg-slate-400 dark:hover:bg-slate-300 dark:text-gray-900 transition-colors font-semibold"
                   disabled={isSubmitting}
                 >
                   Next
@@ -1376,7 +1401,7 @@ const SchoolSystemSetupForm = () => {
               {currentStep === totalSteps && (
                 <Button
                   type="submit"
-                  className="bg-slate-600 hover:bg-slate-800 text-white dark:bg-slate-400 dark:hover:bg-slate-200 dark:text-slate-900 transition-colors font-semibold"
+                  className="bg-slate-600 hover:bg-slate-700 text-white dark:bg-slate-400 dark:hover:bg-slate-300 dark:text-gray-900 transition-colors font-semibold"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Complete Setup"}
