@@ -1,0 +1,96 @@
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 210 20% 98%; /* slate-50 (#F8FAFC) - soft white for light mode */
+    --foreground: 210 40% 20%; /* slate-700 (#334155) - dark text for contrast */
+    --card: 210 20% 88%; /* slate-200 (#E2E8F0) - light card background */
+    --card-foreground: 210 40% 20%; /* slate-700 - card text */
+    --popover: 210 20% 98%; /* slate-50 - matches background */
+    --popover-foreground: 210 40% 20%; /* slate-700 */
+    --primary: 217 32% 42%; /* slate-600 (#475569) - SlateBlue for buttons, headers */
+    --primary-foreground: 0 0% 98%; /* near-white for contrast on primary */
+    --secondary: 210 20% 88%; /* slate-200 - light secondary background */
+    --secondary-foreground: 210 40% 20%; /* slate-700 */
+    --muted: 210 16% 93%; /* slate-100 (#F1F5F9) - muted background */
+    --muted-foreground: 210 20% 45%; /* slate-500 (#64748B) - muted text */
+    --accent: 217 24% 59%; /* slate-400 (#94A3B8) - lighter SlateBlue accent */
+    --accent-foreground: 210 40% 20%; /* slate-700 */
+    --destructive: 0 84% 60%; /* red-500 - kept for errors */
+    --destructive-foreground: 0 0% 98%; /* white for error text */
+    --border: 210 20% 80%; /* slate-300 (#CBD5E1) - borders */
+    --input: 210 20% 80%; /* slate-300 - input borders */
+    --ring: 217 32% 42%; /* slate-600 - focus rings */
+    --chart-1: 217 32% 42%; /* slate-600 */
+    --chart-2: 217 24% 59%; /* slate-400 */
+    --chart-3: 210 40% 20%; /* slate-700 */
+    --chart-4: 210 20% 88%; /* slate-200 */
+    --chart-5: 210 16% 93%; /* slate-100 */
+    --radius: 0.5rem;
+    --sidebar-background: 210 20% 98%; /* slate-50 */
+    --sidebar-foreground: 210 40% 20%; /* slate-700 */
+    --sidebar-primary: 217 32% 42%; /* slate-600 */
+    --sidebar-primary-foreground: 0 0% 98%; /* white */
+    --sidebar-accent: 217 24% 59%; /* slate-400 */
+    --sidebar-accent-foreground: 210 40% 20%; /* slate-700 */
+    --sidebar-border: 210 20% 80%; /* slate-300 */
+    --sidebar-ring: 217 32% 42%; /* slate-600 */
+  }
+
+  .dark {
+    --background: 210 40% 7%; /* slate-900 (#0F172A) - dark background */
+    --foreground: 210 20% 88%; /* slate-200 (#E2E8F0) - light text */
+    --card: 210 40% 15%; /* slate-800 (#1E293B) - dark card background */
+    --card-foreground: 210 20% 88%; /* slate-200 */
+    --popover: 210 40% 7%; /* slate-900 - matches background */
+    --popover-foreground: 210 20% 88%; /* slate-200 */
+    --primary: 217 24% 59%; /* slate-400 (#94A3B8) - lighter SlateBlue for dark mode */
+    --primary-foreground: 210 40% 15%; /* slate-800 - dark text for contrast */
+    --secondary: 210 40% 15%; /* slate-800 - dark secondary background */
+    --secondary-foreground: 210 20% 88%; /* slate-200 */
+    --muted: 210 40% 10%; /* slate-850 (~#151F32) - custom muted for dark mode */
+    --muted-foreground: 210 20% 65%; /* slate-400 (#94A3B8) */
+    --accent: 217 32% 42%; /* slate-600 (#475569) - SlateBlue accent */
+    --accent-foreground: 210 20% 88%; /* slate-200 */
+    --destructive: 0 62% 40%; /* red-600 - darker red for dark mode */
+    --destructive-foreground: 0 0% 98%; /* white */
+    --border: 210 40% 20%; /* slate-700 (#334155) - borders */
+    --input: 210 40% 20%; /* slate-700 */
+    --ring: 217 24% 59%; /* slate-400 - focus rings */
+    --chart-1: 217 24% 59%; /* slate-400 */
+    --chart-2: 217 32% 42%; /* slate-600 */
+    --chart-3: 210 20% 88%; /* slate-200 */
+    --chart-4: 210 40% 15%; /* slate-800 */
+    --chart-5: 210 40% 7%; /* slate-900 */
+    --sidebar-background: 210 40% 7%; /* slate-900 */
+    --sidebar-foreground: 210 20% 88%; /* slate-200 */
+    --sidebar-primary: 217 24% 59%; /* slate-400 */
+    --sidebar-primary-foreground: 210 40% 15%; /* slate-800 */
+    --sidebar-accent: 217 32% 42%; /* slate-600 */
+    --sidebar-accent-foreground: 210 20% 88%; /* slate-200 */
+    --sidebar-border: 210 40% 20%; /* slate-700 */
+    --sidebar-ring: 217 24% 59%; /* slate-400 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
